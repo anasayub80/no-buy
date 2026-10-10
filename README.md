@@ -1,6 +1,6 @@
 # Lessly no-buy app
 
-**Working name.** Complete community-informed mobile UI/UX with 82 navigable screens, original illustrations, motion and browser-local interactions.
+**Working name. Visual edition 02.** Complete community-informed mobile UI/UX with 82 navigable screens, original illustrations, motion and browser-local interactions.
 
 [Open the private review prototype](https://lessly-design.m-anasayub80.chatgpt.site)
 
@@ -11,6 +11,11 @@
 - [UI/UX specification and all screen routes](docs/UIUX-specification.md)
 - [25-post community research and coverage limits](docs/community-research.md)
 - [Original asset manifest and prompts](docs/asset-manifest.md)
+- [Visual direction, layouts and motion guide](docs/Visual-design-guide.md)
+
+## Visual redesign
+
+Sculptural illustrated landscapes, editorial type, chapter cards with circular progress, object-led waiting room, immersive pause studio, freedom-fund goal cards and a real-screen design gallery. All 82 screens share refined surfaces, controls and motion with reduced-motion support. The third original illustration is a quiet reading ritual.
 
 ## What works
 
