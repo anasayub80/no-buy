@@ -1,0 +1,13 @@
+const fs=require('node:fs');const vm=require('node:vm');
+const app=fs.readFileSync('dist/app.js','utf8'),extra=fs.readFileSync('dist/community.js','utf8');
+const context={};vm.createContext(context);
+const start=app.indexOf('const groups='),end=app.indexOf('const screens=',start);
+const extraStart=extra.indexOf('const communityGroups='),extraEnd=extra.indexOf('function migrateCommunity',extraStart);
+vm.runInContext(extra.slice(extraStart,extraEnd)+app.slice(start,end),context);
+const groups=vm.runInContext('groups',context);let n=0;
+let table='| # | Journey | Screen | Purpose |\n| --- | --- | --- | --- |\n';
+for(const [journey,items]of groups)for(const [id,title,purpose]of items)table+=`| ${String(++n).padStart(2,'0')} | ${journey} | [${title}](https://lessly-design.m-anasayub80.chatgpt.site/#${id}) | ${purpose} |\n`;
+const target='docs/UIUX-specification.md';let spec=fs.readFileSync(target,'utf8').split('| # | Journey | Screen | Purpose |')[0]+table;
+fs.writeFileSync(target,spec);fs.writeFileSync('dist/design-spec.md',spec);
+fs.copyFileSync('docs/App-product-requirements.md','dist/app-idea.md');
+console.log(`${n} screens documented across ${groups.length} journeys; hosted specifications synchronized.`);
