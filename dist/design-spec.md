@@ -1,6 +1,6 @@
 # Lessly — complete mobile UI/UX specification
 
-Working name: **Lessly**. The final name has not been chosen. Version 1.2, 10 October 2026. This is an interactive design prototype for a no-buy / low-buy mobile app, not a released financial service.
+Working name: **Lessly**. The final name has not been chosen. Version 1.3, 11 October 2026. This is an interactive design prototype for a no-buy / low-buy mobile app, not a released financial service.
 
 ## Product promise
 
@@ -12,8 +12,8 @@ Primary audience: English-speaking adults in the US, UK and European markets who
 
 - 82 designed, navigable mobile screens across 14 journeys.
 - Responsive design-review website with a mobile prototype, searchable screen navigator, complete screen index, and brand/system board.
-- Original hourglass, growth-garden and quiet-ritual illustrations, transparent full-resolution originals, optimized local WebP assets, original vector identity and icon system.
-- Motion: screen entrances, slow illustrative movement, breathing cue, live countdown and tactile button feedback, with reduced-motion support.
+- Seven original illustrations: hourglass, growth garden, quiet ritual, sprout companion, enough wardrobe, little escape and simple meal, transparent full-resolution originals, optimized local WebP assets, original vector identity and icon system.
+- Motion: screen entrances, slow illustrative movement, breathing cue, live countdown and tactile button feedback, with a persistent motion toggle and system reduced-motion support.
 - Interactive browser-local demo: challenge setup, rule editing, wants, purchase decisions, inventory, multiple goals and contributions, check-ins, reminders preferences, timer, reflections, export and share-card download.
 - Source, meaningful regression checks, this specification, and an asset manifest.
 
@@ -79,14 +79,14 @@ Currency selection labels amounts in the chosen currency; the prototype does not
 | Forest | `#183F35`, primary action and grounding |
 | Sprout | `#D2E9BD`, growth and positive emphasis |
 | Clay | `#F3AD91`, human warmth and reflective moments |
-| Cream | `#F8F7F0`, breathable app canvas |
-| Primary typography | Georgia editorial headings; system sans for controls and labels |
-| Phone width | 410px desktop review; fluid mobile viewport |
+| Cream | `#FBFCF7`, breathable app canvas; `#F8F7F0` brand cream |
+| Primary typography | Bold system sans headings and controls; selective Georgia italic accents |
+| Phone width | 390×844px desktop review; fluid mobile viewport |
 | Spacing | Primarily 6/8/12/16/20/24/32px |
 | Shapes | 17px primary controls, 24–29px cards, sculptural circular framing |
 | Icons | Original consistent line SVGs, usually 22px with 1.65px stroke |
 | Screen entrance | 400ms screen reveal; 500ms staggered elements with 40–150ms delay |
-| Illustration motion | Slow eight-second drift; decorative, removable |
+| Illustration motion | Seven-second drift; decorative; explicit off control and system preference |
 | Breathing cue | Gentle six-second cycle; no mandated breathing technique |
 
 The original hourglass visually explains the pause. The sculptural garden explains cumulative growth. The quiet-ritual illustration adds books and tea as a personal alternative to shopping. These illustrations avoid coins, banknotes and shopping imagery, keeping the brand about personal space rather than financial spectacle. All runtime assets are local; no stock images, remote fonts, advertising scripts or third-party UI libraries are loaded.
@@ -125,7 +125,7 @@ The included Node regression check renders all 82 screen templates, validates ro
 
 Run `node tests/prototype.test.cjs` from the source root. This is a buildless site; `dist/` contains the deployment output.
 
-**Verification limit:** Browser-based visual and device QA was unavailable in this managed environment. All three generated illustrations were visually inspected. Source, rendered markup and state behavior were checked; native iOS/Android screen-reader behavior, pixel-level layout, touch interactions, clipboard and downloaded-card viewing still require browser/device review.
+**Verification limit:** Browser-based visual and device QA was unavailable in this managed environment. All seven generated illustrations were visually inspected. Source, rendered markup and state behavior were checked; native iOS/Android screen-reader behavior, pixel-level layout, touch interactions, clipboard and downloaded-card viewing still require browser/device review.
 
 ## Community informed additions
 
@@ -133,21 +133,18 @@ The v1.1 update adds 20 screens: a seven-day starter, essential exception reflec
 
 Check-in history is preserved after purchases. Pockets apply a manually entered carry-in only when enabled. Confirmed refunds reduce applicable net spending and do not become skipped spending or set-aside contributions. Recurring cancellation is a manual two-step confirmation, not an API operation. Suitable inventory matching excludes finished, given-away and unsafe or unsuitable items. The app performs no automatic financial, shopping, app-blocking or messaging operations.
 
-## Visual edition 02
+## Visual edition 03: Pet Care-inspired clarity
 
-The v1.2 redesign preserves all 82 screens and browser-local behavior, with a more expressive shared visual system in dist/visual.css.
+The v1.3 redesign preserves all 82 screens and existing browser-local records. The shared presentation layer in `dist/journeys.css` adapts the user's Pet Care reference to Lessly's independent green identity.
 
-- Today: a forest-green illustrated landscape, paired honest-money figures, a daily check-in, a sculptural pause invitation and personal no-spend activities.
-- Welcome: larger editorial typography and a framed growth sculpture, with a clear walkthrough and exploration action.
-- Challenges: a chapter card with circular time progress, a seven-day illustrated entry and a two-column contextual toolkit.
-- Waiting room: individual object compositions, calm cooldown labels and clear review actions. Expiry never creates a purchase prompt.
-- Pause: a dedicated warm illustrated studio, an explicit 90-second ritual and concentric breathing/timer treatment.
-- Goals: an illustrated total and distinct freedom-fund cards. Skipped cost stays separate from confirmed money.
-- All screens: larger fields, clear hierarchy, tactile action states, richer surfaces and responsive layouts.
-- Screen index: miniature renderings of the actual screens, with inert controls and animations disabled for performance.
-- Motion: screen/element entrances, eight-second sculptural drift, growing progress bars, ring arrival, a six-second breathing cue and immediate press feedback. The operating system's reduced-motion preference removes animations and transitions.
+- Complete screen gallery: 390×844px phone frames scaled to 66%, with labels above each phone. The desktop navigator remains visible. Journey filters combine with screen search; empty results have an explicit reset action. Enter or Space opens a focused phone preview.
+- Mobile hierarchy: bold 32px system-sans headings, occasional Georgia italic emphasis, clear 13px descriptions and 50px primary actions. The four welcome screens use a flexible scrollable content area and bottom-aligned actions.
+- Illustration system: seven matching transparent originals. The new sprout supports pauses/recovery; the wardrobe supports existing belongings/use-up; the weekend bag supports goals; the meal supports food-delivery alternatives. Fourteen other screens gain compact illustrated story bands.
+- Motion: slow art and floating-note movement, short screen arrivals, progress appearance, the six-second breathing cue and brief completion particles. Motion on/off persists independently of records; turning it off does not pause or reset the timer. A system reduced-motion preference takes precedence. No financial or challenge state is altered by motion.
+- Review entry point: `?view=screens` opens the gallery; existing screen hashes continue to open individual prototype screens.
+- Brand & system: all seven assets can be inspected and downloaded individually.
 
-No remote fonts, analytics, dependencies or new external integrations were added. Existing stored records remain compatible. The complete motion timings, layout rationale and asset placement are in Visual-design-guide.md.
+No remote fonts, new dependencies or external integrations were introduced. Pet Care's repository is unchanged. Source/state checks include the new gallery filtering, reset behavior and timer-preserving motion setting. Browser/device visual QA remains pending; it was unavailable in this managed environment. See Visual-design-guide.md and Pet-care-inspired-design.md for the visual handoff.
 
 ## Complete screen inventory
 

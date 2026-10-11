@@ -1,56 +1,59 @@
-# Lessly / Visual edition 02
+# Lessly / Visual edition 03
 
-10 October 2026. Working name. An expressive visual redesign of the complete 82-screen, 14-journey interactive app prototype.
+11 October 2026. Working name. The complete 82-screen, 14-journey prototype now follows the clearer screen-review concept the user preferred in Pet Care.
 
 ## Creative direction
 
-Make buying less feel like making room for a life, rather than maintaining a restrictive finance spreadsheet. Forest-green editorial surfaces anchor the experience. Warm cream gives the interface space. Pale mint suggests growth; clay makes reflective moments feel human. Sculptural illustrations are part of the composition, not decorative thumbnails appended to a form.
+A little more life, a little less checkout. Keep the forest-green brand, warm peach and pale mint illustrations, and a calm canvas. Use a legible, confident mobile interface with occasional editorial accents. The illustrations should explain the purpose of the screen and make the app recognizable. Forms keep enough space for entering and reviewing information.
 
-Georgia supplies the expressive display face. A local system sans-serif supplies controls and dense content. The prototype does not load Inter remotely: it uses that font only if it already exists on a device, otherwise the device's native sans-serif. Editorial headlines range from 39 to 61 CSS pixels in the phone interface. Field text is 14px, body text 13px, and small supporting labels are 9–12px. Native implementation must honor font scaling and accessibility settings.
+System sans supplies bold headings, labels and controls. Georgia italic adds a few warm accents. Main phone headings are 32px with 1.14 line height; onboarding headings are 36px, or 34px on small screens. Descriptions are 13px, field text is 14px, and supporting labels are 10–12px. The review prototype uses local fonts and no remote font requests. Native delivery must honor font scaling.
 
 ## Key compositions
 
-| Surface | Composition | Why it exists |
+| Surface | Composition | Purpose |
 | --- | --- | --- |
-| Welcome | Large two-line statement, framed garden, one primary action | Establish a recognizable identity and a simple starting point |
-| Today | Illustrated forest landscape, paired money figures, check-in, pause and joy | Put the next useful action before administrative tools |
-| Challenges | Dark chapter card, circular day progress, illustrated small-start card | Make a challenge feel finite, personal and adaptable |
-| Waiting room | Calm object compositions, clear prices and cooldown labels | Capture a want without creating urgency or promoting checkout |
-| Pause | Warm hourglass composition and dedicated breathing/time treatment | Give reflection its own visual environment |
-| Goals | Sculptural total, individual goal cards and actual contributions | Connect buying less with meaningful personal possibilities |
-| Joy menu | Reading-ritual illustration, energy filters and personal activities | Offer an accessible alternative at the moment of temptation |
-| Screen index | Actual rendered miniature screens | Let a developer review the full visual system and every journey |
+| Welcome | Sprout scene, two-line headline, short explanation, fixed action area | Recognizable, understandable starting point |
+| Pause introduction | Hourglass scene and a little floating note | Explain the space between urge and choice |
+| Clarity introduction | Wardrobe scene and selective italic accent | Make existing belongings feel useful |
+| Growth introduction | Weekend bag scene | Give actual set-aside money a personal purpose |
+| Today | Forest landscape, distinct money figures, check-in and pause | Make the next useful action obvious |
+| Challenges | Finite chapter card and circular day progress | Personal, adaptable commitments |
+| Waiting room | Individual object compositions and calm expiry labels | Store a want without promoting checkout |
+| Pause | Sprout companion, warm circular framing and breathing/time treatment | A comfortable reflective moment |
+| Recovery | Small illustrated sprout band | Return after a purchase without erased history |
+| Owned and use-up | Wardrobe illustrations | Enjoy suitable existing belongings |
+| Goals | Weekend bag landscape and separate goal cards | Meaningful possibilities backed by manual confirmations |
+| Food alternative | Simple meal story band above the pantry plan | Support a familiar meal instead of delivery |
+| Screen gallery | Full 390×844px phone frames scaled to 66% | Compare first-viewport layouts without arbitrary crop panels |
 
 ## Original art
 
-The hourglass represents time to reflect. The garden represents gradual progress. The new quiet ritual combines ceramic tea, books, leaves and a warm architectural arch to represent enjoyment of what is already here. These are original generated assets, not competitor screenshots or UI mockups. Full-resolution transparent PNG originals and optimized transparent WebP files are both committed. See asset-manifest.md for paths and exact generation prompts.
+Seven original illustrations share a matte ceramic/clay 3D language. Hourglass: reflection. Garden: gradual growth. Quiet ritual: reading and tea. Sprout companion: patience and recovery. Wardrobe: suitable items already owned. Weekend bag: meaningful goals. Meal: a familiar food alternative. The generated artwork was inspected and both original RGBA PNGs and transparent optimized WebP copies are included. Exact prompts and paths are in asset-manifest.md.
 
-The dashboard and goals place the garden inside a forest-green landscape. Welcome and pause use cream/clay circular framing. The joy menu and personal alternatives place the reading ritual in a warm composition. Artwork scales with object-fit containment; labels remain native HTML and can be changed or localized without editing imagery.
+Artwork is contained within deliberate scenes or compact bands. Headlines, status values and controls remain HTML, making text editable and localizable. No competitor assets or screenshot imagery are included in the repository.
 
 ## Motion specification
 
-| Interaction | Timing and treatment | Reduced-motion behavior |
+| Interaction | Treatment | When motion is off |
 | --- | --- | --- |
-| Screen entry | 400ms opacity plus 9px upward reveal | Immediate appearance |
-| Element entry | 500ms reveal, 40–150ms stagger | Immediate appearance |
-| Sculpture | Eight-second ±7px drift with restrained rotation | Static illustration |
-| Progress bar | 800ms growth from its left edge | Final value shown immediately |
-| Challenge ring | 800ms arrival, value derived from challenge duration | Final ring shown immediately |
-| Breathing cue | Six-second scale cycle | Static circle; timer still functional |
-| Primary action | 200ms hover lift; immediate small press contraction | Color/state response without movement |
-| Completion mark | 700ms arrival | Immediate completion mark |
-| Gallery previews | All animation disabled; illustrations lazy-loaded | Same static preview |
+| Screen entry | Existing brief opacity/upward reveal | Immediate appearance |
+| Sculpture | Seven-second ±7px drift with restrained rotation | Static illustration |
+| Floating scene note | Seven-second small drift and tilt | Static note |
+| Scene accents | Twelve-second restrained turn | Static accents |
+| Progress and challenge ring | Existing 800ms appearance; actual state controls values | Final state shown |
+| Breathing cue | Six-second scale cycle | Static circle; timer continues |
+| Completion particles | One brief 900ms burst when a completion screen mounts | Hidden |
+| Action response | Small press/hover response | Immediate state response |
+| Screen gallery | Same gentle illustration movement, lazy-loaded artwork, content visibility | Static previews |
 
-Animations never alter financial values, check-ins, cooldown timestamps or timer behavior. Decorative motion does not introduce purchases, rewards or a streak reset. CSS prefers-reduced-motion removes animations and transitions, including smooth scrolling. No animation library or additional runtime dependency is needed.
+Motion controls are available in the gallery, prototype review controls and asset board. The setting persists under `lessly-motion`, independent of the app records. Changing it does not rerender the screen or alter a running countdown. The operating system reduced-motion preference wins and disables decorative movement. No animation library is required.
 
-## Responsive and component details
+## Responsive review layout
 
-Desktop presents a 410px review phone, navigable journey rail and design notes. The phone remains vertically scrollable when viewport height is limited. Below 700px, the review chrome becomes compact and the app uses the available mobile width and dynamic viewport height. Below 359px, headline and illustration sizing adjusts to retain the intended hierarchy.
+Desktop: persistent header; searchable navigator; complete phone previews with labels above; wrapping journey filters. The gallery uses flexible columns with a 257.4px minimum per phone. At 700px and below the navigator collapses and the gallery uses as many complete phone columns as fit, usually one on a narrow phone. Individual screen exploration uses the full mobile viewport. Onboarding content can scroll separately from the action area when height is constrained.
 
-Primary controls use 17px corners, cards 24–29px, and illustrated frames up to 36px. Forms retain explicit labels, validation and preserved browser-local records. Buttons have visible focus and press feedback. The waiting room's gallery objects use the existing editable SVG icon system; accurate text and monetary values remain HTML.
+Gallery phone content is inert: pressing a preview opens its interactive screen. Enter and Space support the same action. Forms, buttons and nested navigation work in Prototype mode. The gallery presents each screen's first full device viewport; long content is scrollable after opening that screen.
 
-## Implementation and verification
+## Verification status
 
-dist/styles.css retains the underlying layout system. dist/visual.css supplies the visual edition, component refinements, screen layouts and motion. dist/app.js defines the redesigned primary compositions; dist/community.js applies matching illustration framing to community-informed tools.
-
-The existing source/state regression checks cover all 82 screens and core interactions. Browser-based pixel inspection, real device layout, assistive technology, keyboard behavior and download viewing still require device/browser review. The design has not received an award; professional design quality is the goal, not an award claim.
+Source/render/state regression checks pass for all 82 screens. The new filters combine with text search, reset correctly, and motion changes preserve app records and a running timer. All seven artwork files have genuine transparent alpha channels and runtime references resolve. Browser/device visual and native accessibility QA remain pending because the required browser control was unavailable in this environment.

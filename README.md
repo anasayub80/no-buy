@@ -1,6 +1,6 @@
 # Lessly no-buy app
 
-**Working name. Visual edition 02.** Complete community-informed mobile UI/UX with 82 navigable screens, original illustrations, motion and browser-local interactions.
+**Working name. Visual edition 03.** Complete community-informed mobile UI/UX with 82 navigable screens, original illustrations, motion and browser-local interactions.
 
 [Open the private review prototype](https://lessly-design.m-anasayub80.chatgpt.site)
 
@@ -15,7 +15,11 @@
 
 ## Visual redesign
 
-Sculptural illustrated landscapes, editorial type, chapter cards with circular progress, object-led waiting room, immersive pause studio, freedom-fund goal cards and a real-screen design gallery. All 82 screens share refined surfaces, controls and motion with reduced-motion support. The third original illustration is a quiet reading ritual.
+Pet Care’s clearer review layout is adapted to Lessly: persistent screen navigation, journey chips, searchable full-phone previews, and direct access to all 82 screens. The mobile system uses bold, readable headings, restrained italic accents and bottom-aligned onboarding actions. Seven original illustrations cover pauses, recovery, owned belongings, goals, food alternatives and daily enjoyment. Gentle art motion, breathing cues, short completion effects and an explicit persistent motion setting respect the system reduced-motion preference.
+
+[Open the complete screen gallery](https://lessly-design.m-anasayub80.chatgpt.site/?view=screens)
+
+See [the Pet Care-inspired design handoff](docs/Pet-care-inspired-design.md) for screen placement, responsive behavior and implementation notes.
 
 ## What works
 

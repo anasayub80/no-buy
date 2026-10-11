@@ -45,4 +45,37 @@ submit('commitment',{name:'Existing payment plan',type:'BNPL',balance:'80',payme
 assert.equal(new Set(run('state.purchases.map(p=>p.id)')).size,run('state.purchases.length'));
 run("selectedWant=2;handleAction('extend-wait')");assert.ok(run('want().cooldownUntil'));run("want().cooldownUntil=new Date(Date.now()-1000).toISOString();updateCooldowns()");assert.equal(run('want().status'),'Ready');assert.equal(run('want().hours'),0);
 for(const {id} of all){run(`screen=${JSON.stringify(id)};render()`);assert.ok(!element('studio').innerHTML.includes('undefined'),`mutated-state screen ${id}`)}
-console.log(`PASS: ${all.length} screens; navigation, forms, persistence, timer, real cooldowns, preserved check-ins, essential exceptions, activities, pantry plans, suitable inventory, carry-over, subscription confirmations, commitments, and refund/savings separation.`);
+// The gallery combines journey filters and search, and recovers from empty results.
+run("view='library';search='';handleAction('gallery-group','Life beyond shopping')");
+assert.equal(run('galleryScreens().length'),4);
+assert.ok(element('studio').innerHTML.includes('gallery-layout'));
+assert.ok(element('studio').innerHTML.includes('class="rail"'));
+assert.equal((element('studio').innerHTML.match(/class="library-card"/g)||[]).length,4);
+run("search='food delivery'");assert.equal(run('galleryScreens().length'),1);
+assert.equal(run('galleryScreens()[0].id'),'food-rescue');
+run("search='a screen that does not exist'");assert.ok(run('renderGalleryCards()').includes('Show all screens'));
+run("handleAction('clear-gallery')");assert.equal(run('galleryScreens().length'),82);
+run("handleAction('gallery-group','<unknown>')");assert.equal(run('galleryGroup'),'All');
+for(const id of ['welcome','intro-pause','intro-clarity','intro-grow']){
+ const html=run(`renderScreen('${id}')`);assert.ok(html.includes('onboard-actions'));
+ assert.ok(html.indexOf('onboard-actions')>html.indexOf('onboard-pagination'));
+}
+assert.ok(run('renderGalleryCards()').includes('role="button" tabindex="0"'));
+assert.ok(run('renderGalleryCards()').includes('aria-hidden="true" inert'));
+// Decorative controls must leave records and a running functional timer untouched.
+run("go('timer');handleAction('start-timer')");const beforeMotion=run('JSON.stringify(state)'),remaining=run('timerRemaining');
+run("handleAction('toggle-motion')");assert.equal(run('motionEnabled'),false);
+assert.equal(storage.get('lessly-motion'),'off');assert.equal(run('timerRunning'),true);
+assert.equal(run('timerRemaining'),remaining);assert.equal(intervals.size,1);
+assert.equal(run('JSON.stringify(state)'),beforeMotion);
+run("handleAction('toggle-motion')");assert.equal(run('motionEnabled'),true);
+assert.equal(storage.get('lessly-motion'),'on');assert.equal(intervals.size,1);run('stopTimer()');
+// System reduced motion overrides a saved preference and cannot be reenabled in-app.
+const reduced={...sandbox,window:{addEventListener(){},matchMedia:()=>({matches:true})},location:{hash:'',search:'?view=screens'}};
+vm.createContext(reduced);vm.runInContext(fs.readFileSync('dist/community.js','utf8'),reduced);vm.runInContext(fs.readFileSync('dist/app.js','utf8'),reduced);
+assert.equal(vm.runInContext('view',reduced),'library');
+assert.ok(vm.runInContext('motionControl()',reduced).includes('disabled'));
+vm.runInContext("handleAction('toggle-motion')",reduced);
+assert.equal(vm.runInContext('motionEnabled',reduced),true);
+assert.ok(vm.runInContext('motionControl()',reduced).includes('Reduced motion'));
+console.log(`PASS: ${all.length} screens; app-state regressions, gallery search/filter/reset, keyboard route markup, motion preference, reduced-motion override, and timer/state independence.`);
