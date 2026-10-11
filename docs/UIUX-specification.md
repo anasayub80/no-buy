@@ -1,6 +1,6 @@
 # Lessly — complete mobile UI/UX specification
 
-Working name: **Lessly**. The final name has not been chosen. Version 1.3, 11 October 2026. This is an interactive design prototype for a no-buy / low-buy mobile app, not a released financial service.
+Working name: **Lessly**. The final name has not been chosen. Version 1.4, 11 October 2026. This is an interactive design prototype for a no-buy / low-buy mobile app, not a released financial service.
 
 ## Product promise
 
@@ -111,7 +111,7 @@ Wishlist cooldowns now use saved expiry timestamps and refresh on rendering. The
 
 ## Suggested implementation order for a solo developer
 
-**First release:** Native Flutter navigation and design tokens; local persistent wants with timestamp cooldowns; no-buy/low-buy rule builder; check-ins; real timer; manual purchase logs; owned inventory; goals with manual contributions; export; device reminder preferences/permissions; accessible empty/error states. Use a reliable local database and no mandatory account initially.
+**First release:** Native Flutter navigation and design tokens; local persistent wants with timestamp cooldowns; no-buy/low-buy rule builder; check-ins; real timer; manual purchase logs; owned inventory; goals with manual contributions; export; scheduled local product reminders and permission handling; accessible empty/error states. Use a reliable local database and no mandatory account initially.
 
 **Next:** Weekly patterns generated from actual local data; fully implemented offline behavior and backup; calendar history editing; richer owned-item photos; production share card rendering and localized currencies/dates.
 
@@ -146,6 +146,14 @@ The v1.3 redesign preserves all 82 screens and existing browser-local records. T
 
 No remote fonts, new dependencies or external integrations were introduced. Pet Care's repository is unchanged. Source/state checks include the new gallery filtering, reset behavior and timer-preserving motion setting. Browser/device visual QA remains pending; it was unavailable in this managed environment. See Visual-design-guide.md and Pet-care-inspired-design.md for the visual handoff.
 
+## Core product capture and reminder flow
+
+Version 1.4 restores the original product-link concept as a primary path. Today includes Save a product; Wants includes the same action. The save form captures the optional product URL, name, price, category, context, reminder preference and a review interval. Three days is the default; one week, 24 hours and 48 hours are also available.
+
+The saved-product screen shows the original product link, the exact local review date and remaining wait. Editing can retain the current date or explicitly reschedule it. When the timestamp expires, Today presents Still want this and the waiting-room Ready filter exposes the item. The decision screen offers let it go, review before buying, wait three more days or wait another week. Notification taps in the native app must deep-link to this same item review.
+
+Links are validated as http/https without embedded credentials and are escaped before rendering. Dates, reminder preferences and URLs persist with the item. The prototype implements the saved date and in-app due-item state; it does not deliver OS notifications. Scheduled local device reminders are a required native first-release integration. Skips, deletion and purchases must cancel their pending device reminder; rescheduling must replace it without duplicates. See the updated product requirements for acceptance conditions.
+
 ## Complete screen inventory
 
 Every screen below is reachable in the review website.
@@ -153,7 +161,7 @@ Every screen below is reachable in the review website.
 | # | Journey | Screen | Purpose |
 | --- | --- | --- | --- |
 | 01 | Start here | [Welcome](https://lessly-design.m-anasayub80.chatgpt.site/#welcome) | A calmer relationship with buying. |
-| 02 | Start here | [The pause](https://lessly-design.m-anasayub80.chatgpt.site/#intro-pause) | A small ritual between impulse and action. |
+| 02 | Start here | [Save now decide later](https://lessly-design.m-anasayub80.chatgpt.site/#intro-pause) | Save a product link and choose when to revisit. |
 | 03 | Start here | [The clarity](https://lessly-design.m-anasayub80.chatgpt.site/#intro-clarity) | Understand the true cost of a want. |
 | 04 | Start here | [The growth](https://lessly-design.m-anasayub80.chatgpt.site/#intro-grow) | Turn small choices into meaningful progress. |
 | 05 | Start here | [Your intention](https://lessly-design.m-anasayub80.chatgpt.site/#intent) | Choose the reason that matters to you. |
@@ -175,9 +183,9 @@ Every screen below is reachable in the review website.
 | 21 | Challenges | [Adjust your rules](https://lessly-design.m-anasayub80.chatgpt.site/#edit-rules) | Adapt with intention. |
 | 22 | Challenges | [Challenge complete](https://lessly-design.m-anasayub80.chatgpt.site/#challenge-complete) | Celebrate what you learned. |
 | 23 | Wants & decisions | [Waiting room](https://lessly-design.m-anasayub80.chatgpt.site/#wishlist) | Give your wants a little breathing room. |
-| 24 | Wants & decisions | [Add a want](https://lessly-design.m-anasayub80.chatgpt.site/#add-item) | Capture a thought without buying it. |
-| 25 | Wants & decisions | [Want detail](https://lessly-design.m-anasayub80.chatgpt.site/#item-detail) | Context, cooldown and ownership alternatives. |
-| 26 | Wants & decisions | [Edit a want](https://lessly-design.m-anasayub80.chatgpt.site/#edit-item) | Keep your list useful. |
+| 24 | Wants & decisions | [Save a product](https://lessly-design.m-anasayub80.chatgpt.site/#add-item) | Save its link and choose a time to revisit. |
+| 25 | Wants & decisions | [Saved product & reminder](https://lessly-design.m-anasayub80.chatgpt.site/#item-detail) | Product link, review date and buy, skip or wait choices. |
+| 26 | Wants & decisions | [Edit saved product](https://lessly-design.m-anasayub80.chatgpt.site/#edit-item) | Update its link or reschedule the review. |
 | 27 | Wants & decisions | [Before you buy](https://lessly-design.m-anasayub80.chatgpt.site/#decision-check) | Four thoughtful questions. |
 | 28 | Wants & decisions | [The time price](https://lessly-design.m-anasayub80.chatgpt.site/#work-hours) | An optional view of money as time. |
 | 29 | Wants & decisions | [Your decision](https://lessly-design.m-anasayub80.chatgpt.site/#decision-result) | Wait, skip, or buy intentionally. |

@@ -1,10 +1,10 @@
 # Lessly App Idea and Product Requirements
 
-Version 1.1. Prepared for Anas Ayub on 10 October 2026. Lessly is a working name and can be changed before launch.
+Version 1.4. Prepared for Anas Ayub on 11 October 2026. Lessly is a working name and can be changed before launch.
 
 ## Product decision
 
-Build a mobile app that helps people buy fewer discretionary things through a useful pause, realistic personal rules and practical alternatives. The first release should work without a bank connection or mandatory account. Keep the core experience simple enough for one developer to build, support and improve.
+Build a mobile app whose core loop is saving a product link, waiting for a chosen reminder date, and deciding later whether the item is still wanted. A useful pause, realistic personal rules and practical alternatives support that loop. The first release should work without a bank connection or mandatory account. Keep the core experience simple enough for one developer to build, support and improve.
 
 The prototype contains 82 navigable screens. It combines a no-buy or low-buy challenge with an impulse pause, a waiting room, an owned-item collection and meaningful goals. Community-informed tools add essential replacement decisions, personal activities, use-up tracking, food-delivery alternatives and contextual spending records. The implementation is an interactive browser-local prototype; the native app and external services are a subsequent phase.
 
@@ -20,7 +20,7 @@ These observations come from a qualitative review of 25 accessible entries in r/
 
 The user should think of Lessly as a personal decision companion for buying less. The app supports intentional purchases and necessary exceptions, preserves effort after setbacks and offers something useful to do besides shopping. A friendly visual identity makes the experience inviting without turning the app into another feed or rewards store.
 
-The current brand uses forest green, pale mint, warm clay and cream. Georgia headings provide warmth; a clear sans serif supports controls and numbers. Original clay hourglass and garden illustrations communicate pause and growth. Motion remains restrained and can be disabled through reduced-motion preferences. The final name, legal identity, pricing and store assets remain undecided.
+The current brand uses forest green, pale mint, warm clay and cream. Bold system-sans headings make screens easy to scan; selective Georgia italic accents add warmth. Seven original clay illustrations explain reflection, recovery, existing belongings, goals and everyday enjoyment. A persistent motion setting and the system reduced-motion preference control decorative animation. The final name, legal identity, pricing and store assets remain undecided.
 
 ## Complete feature catalogue
 
@@ -42,11 +42,15 @@ Record mood, whether purchases were planned or unplanned, and an optional note. 
 
 Acceptance: editing today's check-in updates the same dated record rather than adding duplicate credit. The progress count is derived from check-in records. Seed historical records are labeled as sample data. Production requires arbitrary-date history, timezone-aware rollover and accessible date semantics.
 
-### Waiting room and real cooldowns
+### Saving a product and deciding after a reminder
 
-Capture a want with price, category, personal context and a waiting period. The user can edit, remove, wait longer, skip or log a purchase. Use a stored expiration timestamp rather than a decrementing counter that resets on restart. When time expires, invite reflection rather than encouraging checkout.
+The core flow begins with a product the user saw and wants to buy. They paste its optional shop URL, enter a name, price and category, and choose when to revisit it. Three days and one week are prominent choices; 24 and 48 hours remain available. A per-product reminder preference defaults on in the save form. The app saves the original link and a review date, then invites the user to leave the decision for later.
 
-Acceptance: removing an entry adds no skipped spending. Explicitly skipping it adds its price once and removes it. Extending a wait sets a new expiration. Cooldown status is recalculated from the timestamp when the prototype renders. Add retailer URLs or product-photo imports only after evaluating whether they increase temptation.
+The saved-product screen shows the link, local review date, remaining time, reminder preference and optional context. The user can update the URL without resetting the wait or explicitly choose a new interval. At expiry, Today and the waiting room expose the item as ready to revisit. The user can decide they no longer want it, review before buying intentionally, or wait another three days or week. Opening a product link does not log a purchase or change money totals.
+
+Acceptance: persist a stable item ID, safe http/https product URL, creation time, selected interval, review timestamp and reminder preference. Reject unsafe schemes and links containing credentials; escape displayed values. Use the saved expiration timestamp rather than a restarting counter. Editing with Keep current review date preserves it; rescheduling sets a new one. Reminder-off items still become ready at expiry. Removing an entry adds no skipped spending. Explicitly skipping it adds its price once and removes it. Waiting and link opening do not increase savings or goal contributions.
+
+The browser prototype saves links, dates and preferences, recalculates due items on rendering and provides the in-app review entry. It does not send device notifications while closed. Scheduled device reminders are a first-release requirement for the native app, rather than an optional later feature. They should use local notification scheduling without requiring a bank connection, an account or a server. Request notification permission after the user chooses a reminder; show a clear status if permission is denied. Tap a reminder to open the same saved-product review. Update or cancel the schedule when the item is rescheduled, skipped, deleted or logged as purchased. Test duplicate prevention, background delivery, app restart, timezone changes and daylight saving transitions before release. Optional product-photo imports can follow validation; the manually entered link is part of the core release.
 
 ### A guided impulse pause
 
@@ -200,7 +204,7 @@ Use the prototype as the design reference for a native Flutter app. A local data
 | Record group | Essential fields |
 | --- | --- |
 | Settings and challenges | Locale, currency, optional rate, challenge ID, start/end, categories, allowance, rules and active status |
-| Wants and inventory | Stable ID, name, category ID, price/currency where relevant, created time, cooldown expiry, condition, use status and remaining estimate |
+| Wants and inventory | Stable ID, name, category ID, price/currency where relevant, created time, product URL, review interval, expiry timestamp, reminder preference, condition, use status and remaining estimate |
 | Check-ins and pauses | Date key with timezone, mood, purchase context, note; trigger, before/after urge, timestamp and completion context |
 | Purchases and refunds | IDs, purchase amount/currency, category, challenge/period association, reason, receipt/policy date, actual refund records |
 | Goals and contributions | Goal ID, target/currency, purpose, contribution amount/time/method and correction history |
@@ -227,9 +231,9 @@ No connected financial, retailer, medical, messaging or payment service is part 
 
 Mallow's public listing describes skipped purchases, timed wishlists, pre-buy questions, check-ins, notes, monthly goals and personal rules. Those are category foundations. Lessly's opportunities lie in a coherent pause-and-alternative flow, essential replacement context, preserving effort, personal use-up work and honest money semantics. The public listing does not establish whether a competitor lacks any particular feature; superiority needs user research and measured comparisons.
 
-For the first native release, prioritize challenges, timestamp-based wants, the pause, suitable inventory, exception reflection, contextual purchases, check-ins and manual goals. Add the seven-day start and a simple activity menu to keep the product easy to begin. Ship category pockets and use-up progress next if early users find them useful. Keep the larger tools optional; do not make every user maintain a financial dashboard.
+For the first native release, prioritize challenges, timestamp-based wants with product URLs and scheduled local reminders, the pause, suitable inventory, exception reflection, contextual purchases, check-ins and manual goals. Add the seven-day start and a simple activity menu to keep the product easy to begin. Ship category pockets and use-up progress next if early users find them useful. Keep the larger tools optional; do not make every user maintain a financial dashboard.
 
-After the core is reliable, consider production analytics, photo capture, scheduled reminders and backup. Buddy sync and paid upgrades should follow demonstrated demand and a privacy design. Avoid bank integrations, retailer scraping, a public social feed or costly AI infrastructure in the initial release.
+After the core is reliable, consider production analytics, photo capture and backup. Buddy sync and paid upgrades should follow demonstrated demand and a privacy design. Avoid bank integrations, retailer scraping, a public social feed or costly AI infrastructure in the initial release.
 
 ## Monetization and distribution
 
@@ -239,7 +243,7 @@ Validate distribution through short product demonstrations, a small spending-res
 
 ## Validation and release criteria
 
-The current regression checks cover all screen renders and navigation, form validation, escaped input, timer lifecycle, timestamp cooldowns, independent monetary totals, goal contributions, preserved check-ins, essential exceptions, activities, food plans, unsuitable-inventory exclusion, carry-over, cancellation confirmation, commitments and refunds. Run npm test or node tests/prototype.test.cjs.
+The current regression checks cover all screen renders and navigation, form validation, escaped input, timer lifecycle, timestamp cooldowns, independent monetary totals, goal contributions, preserved check-ins, essential exceptions, activities, food plans, unsuitable-inventory exclusion, carry-over, cancellation confirmation, commitments and refunds. The v1.4 checks also cover safe URL capture, three-day and one-week intervals, preservation of review dates on edit, rescheduling, due-item review and snoozing without financial changes. Run npm test or node tests/prototype.test.cjs.
 
 Before a native launch, verify the app on supported iOS and Android devices with assistive technology, large text and reduced motion. Test persistence, backup restoration, date rollover, duplicate taps, history edits, refunds, currency constraints, permission denial and account deletion if accounts are added. Review the published privacy policy and store disclosures against the actual production behavior.
 

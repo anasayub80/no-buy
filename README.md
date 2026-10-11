@@ -21,6 +21,10 @@ Pet Care’s clearer review layout is adapted to Lessly: persistent screen navig
 
 See [the Pet Care-inspired design handoff](docs/Pet-care-inspired-design.md) for screen placement, responsive behavior and implementation notes.
 
+## Core product flow
+
+Save a product link → choose 3 days or 1 week → revisit it when ready → buy thoughtfully, skip or wait longer. Try [Save a product](https://lessly-design.m-anasayub80.chatgpt.site/#add-item). Saved URLs, review dates and reminder preferences persist locally. Edits can preserve or change the review date. Today and Wants surface due items. OS notification delivery is a required native-app integration and is not connected in the web prototype.
+
 ## What works
 
 Challenges, wants with timestamp cooldowns, a live 90-second pause, exception reflection, local check-ins, owned inventory and use-up progress, personal no-spend activities, a familiar food plan, manual shopping-friction checklist, sale reflection, purchase/return records, category pockets with manual carry-in, recurring-cost review, payment commitments, multiple goals and actual set-aside contributions, data export and progress-card download.

@@ -29,6 +29,36 @@ body{background:#f1f4ec}
 .phone .card{border-radius:21px;background:#fff}
 .phone .dark-card{background:var(--forest)}
 .phone .dark-card .subtitle{color:#c1d2be}
+.capture-steps{display:flex;align-items:center;justify-content:space-between;gap:7px;margin:20px 0 24px;color:#547243;font-size:11px}
+.capture-steps>span{display:flex;align-items:center;gap:6px;background:#edf4e7;border:1px solid #dfe9d5;border-radius:100px;padding:8px 10px}
+.capture-steps svg{height:13px;width:13px}
+.capture-steps>svg{width:10px;color:#91a17f}
+.review-picker{padding:0;margin:8px 0 20px;border:0;min-width:0}
+.review-picker legend{font-size:12px;font-weight:650;margin-bottom:11px}
+.review-picker>div{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.review-picker label{position:relative;display:flex;align-items:center;justify-content:space-between;gap:5px;border:1px solid #dce5d4;background:#fff;padding:14px 12px;border-radius:17px;cursor:pointer}
+.review-picker label:has(input:checked){background:#e8f1df;border-color:#6f9255;box-shadow:inset 0 0 0 1px #6f9255}
+.review-picker input{position:absolute;opacity:0;width:1px;height:1px}
+.review-picker label:has(input:focus-visible){outline:3px solid #98b882;outline-offset:3px}
+.review-picker b{display:block;font-size:14px;font-weight:700}
+.review-picker small{display:block;font-size:9px;line-height:1.5;margin-top:4px;color:#758169}
+.review-picker svg{width:16px;height:16px;color:#7b926c;flex:none}
+.product-reminder-toggle{display:flex;align-items:center;gap:10px;background:#f1f5ed;border:1px solid #e3ebdc;border-radius:17px;padding:14px;margin:0 0 20px;cursor:pointer}
+.product-reminder-toggle input{width:17px;height:17px;flex:none;accent-color:var(--forest)}
+.product-reminder-toggle>span:first-of-type{color:#658451;display:flex}.product-reminder-toggle svg{width:18px;height:18px}
+.product-reminder-toggle b{font-size:11px;display:block}.product-reminder-toggle small{font-size:9px;line-height:1.6;display:block;margin-top:3px;color:#78866c}
+.saved-product-link{display:flex;align-items:center;gap:11px;width:100%;border:1px solid #e0e6d9;border-radius:18px;background:#fff;padding:15px;margin-bottom:18px;text-decoration:none;color:var(--forest);text-align:left}
+.saved-product-link>span:nth-child(2){flex:1;min-width:0}.saved-product-link b{font-size:12px;display:block}.saved-product-link small{font-size:10px;color:#748368;display:block;margin-top:4px;overflow-wrap:anywhere}.saved-product-link>svg{width:17px;height:17px;color:#708460}
+.review-reminder-card{padding:18px;border:1px solid #dfe9d5;background:#edf4e6;border-radius:22px;margin:18px 0 12px}
+.review-reminder-card h2{font-size:19px;letter-spacing:-.5px;margin:15px 0 9px}.review-reminder-card p{font-size:11px;color:#6e7d60;line-height:1.75}.review-reminder-card p strong{color:#456536;font-weight:650}
+.reminder-status{display:flex;align-items:center;gap:6px;font-size:9px;color:#6e815e;margin-top:14px;padding-top:12px;border-top:1px solid #dce7d2;line-height:1.6}.reminder-status svg{width:13px;height:13px;flex:none}
+.current-review-date{font-size:10px;color:#7a866f;margin:-7px 0 20px}
+.decision-actions{margin:19px 0 23px}.phone .decision-actions .two-col .button{font-size:11px;padding:12px 9px;gap:5px}.decision-actions .two-col svg{width:14px;height:14px;flex:none}
+.save-product-invitation{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:16px;border:1px solid #d7e5c9;border-radius:20px;background:#eaf2e1;color:var(--forest);margin:18px 0 21px}
+.save-product-invitation>span:nth-child(2){flex:1;min-width:0}.save-product-invitation b{display:block;font-size:13px}.save-product-invitation small{display:block;font-size:10px;line-height:1.6;color:#6d805d;margin-top:4px}.save-product-invitation>svg{width:19px;height:19px}
+.ready-review-list{margin:0 0 24px}.ready-review-list .section-row{margin:18px 0 11px}
+.review-notification{display:flex;align-items:center;gap:10px;border:1px solid #e1e7db;background:#fff;border-radius:17px;padding:14px;text-align:left;width:100%;color:var(--forest);margin-bottom:9px}
+.review-notification>span:nth-child(2){flex:1;min-width:0}.review-notification small{display:block;font-size:8px;letter-spacing:1px;color:#829273}.review-notification b{display:block;font-size:12px;line-height:1.4;margin:5px 0}.review-notification span>span{display:block;font-size:9px;line-height:1.5;color:#7a866e}.review-notification>svg{width:14px;height:14px;flex:none;color:#8b9b7e}
 .phone .mint-card{background:#eaf1e2}
 .phone .peach-card{background:#f9e9df}
 .phone .metric{font-family:system-ui,sans-serif;font-weight:650;font-size:32px;letter-spacing:-1.4px}
