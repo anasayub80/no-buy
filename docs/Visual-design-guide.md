@@ -1,4 +1,8 @@
-# Lessly / Visual edition 03
+# Lessly Visual edition 04
+
+13 October 2026. The latest 90-screen, 15-journey design adds a playful shopping-detox layer while preserving the forest, cream, mint and clay identity. See [Shopping detox design](Shopping-detox-design.md) for current screens and interactions.
+
+## Previous visual edition 03
 
 11 October 2026. Working name. The complete 82-screen, 14-journey prototype now follows the clearer screen-review concept the user preferred in Pet Care.
 

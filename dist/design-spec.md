@@ -1,6 +1,6 @@
 # Lessly — complete mobile UI/UX specification
 
-Working name: **Lessly**. The final name has not been chosen. Version 1.4, 11 October 2026. This is an interactive design prototype for a no-buy / low-buy mobile app, not a released financial service.
+Working name: **Lessly**. The final name has not been chosen. Version 1.5, 13 October 2026. This is an interactive design prototype for a no-buy / low-buy mobile app, not a released financial service.
 
 ## Product promise
 
@@ -10,7 +10,7 @@ Primary audience: English-speaking adults in the US, UK and European markets who
 
 ## What is delivered
 
-- 82 designed, navigable mobile screens across 14 journeys.
+- 90 designed, navigable mobile screens across 15 journeys.
 - Responsive design-review website with a mobile prototype, searchable screen navigator, complete screen index, and brand/system board.
 - Seven original illustrations: hourglass, growth garden, quiet ritual, sprout companion, enough wardrobe, little escape and simple meal, transparent full-resolution originals, optimized local WebP assets, original vector identity and icon system.
 - Motion: screen entrances, slow illustrative movement, breathing cue, live countdown and tactile button feedback, with a persistent motion toggle and system reduced-motion support.
@@ -121,7 +121,7 @@ Before release, test deletion/export, backup recovery, timezone changes, timer s
 
 ## Acceptance and verification
 
-The included Node regression check renders all 82 screen templates, validates routes, checks implemented action/form handlers, and exercises form validation, escaping, independent money totals, goal creation/contributions, purchase logging, challenge setup, local persistence, period selection and timer lifecycle.
+The included Node regression check renders all 90 screen templates, validates routes, checks implemented action/form handlers, and exercises form validation, escaping, independent money totals, goal creation/contributions, purchase logging, challenge setup, local persistence, period selection and timer lifecycle.
 
 Run `node tests/prototype.test.cjs` from the source root. This is a buildless site; `dist/` contains the deployment output.
 
@@ -157,6 +157,10 @@ Links are validated as http/https without embedded credentials and are escaped b
 ## Complete screen inventory
 
 Every screen below is reachable in the review website.
+
+## Shopping detox edition
+
+The full design and interaction contracts for the animated companion, recorded temptation counter, native share preview, local battles and private anti-haul cards are in [Shopping detox design](Shopping-detox-design.md). Today and Wants now lead with save, wait and decide. The eight added routes are listed below.
 
 | # | Journey | Screen | Purpose |
 | --- | --- | --- | --- |
@@ -242,3 +246,11 @@ Every screen below is reachable in the review website.
 | 80 | Preferences & states | [Empty waiting room](https://lessly-design.m-anasayub80.chatgpt.site/#empty) | A helpful, quiet first-use state. |
 | 81 | Preferences & states | [Offline state](https://lessly-design.m-anasayub80.chatgpt.site/#offline) | A local-first experience concept. |
 | 82 | Preferences & states | [Recoverable error](https://lessly-design.m-anasayub80.chatgpt.site/#error) | A clear path back to your work. |
+| 83 | Pause, play & share | [Meet your companion](https://lessly-design.m-anasayub80.chatgpt.site/#companion) | A living sprout that grows with thoughtful decisions. |
+| 84 | Pause, play & share | [Your temptation counter](https://lessly-design.m-anasayub80.chatgpt.site/#temptation-counter) | Parked wants, recorded skips and real savings stay distinct. |
+| 85 | Pause, play & share | [Save from anywhere](https://lessly-design.m-anasayub80.chatgpt.site/#capture-guide) | Preview native sharing; paste a link in the browser. |
+| 86 | Pause, play & share | [No-Buy Battles](https://lessly-design.m-anasayub80.chatgpt.site/#battle-hub) | Private challenges measured by showing up, not wealth. |
+| 87 | Pause, play & share | [Create a battle](https://lessly-design.m-anasayub80.chatgpt.site/#battle-create) | Choose a duration, category and essential exception. |
+| 88 | Pause, play & share | [Your battle room](https://lessly-design.m-anasayub80.chatgpt.site/#battle-lobby) | Local check-ins and a clearly labeled demo opponent. |
+| 89 | Pause, play & share | [Battle recap](https://lessly-design.m-anasayub80.chatgpt.site/#battle-results) | Review the challenge without resetting progress. |
+| 90 | Pause, play & share | [Your monthly anti-haul](https://lessly-design.m-anasayub80.chatgpt.site/#anti-haul) | A private list of recorded wants you let go. |

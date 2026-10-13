@@ -1,12 +1,12 @@
 # Lessly App Idea and Product Requirements
 
-Version 1.4. Prepared for Anas Ayub on 11 October 2026. Lessly is a working name and can be changed before launch.
+Version 1.5. Prepared for Anas Ayub on 13 October 2026. Lessly is a working name and can be changed before launch.
 
 ## Product decision
 
 Build a mobile app whose core loop is saving a product link, waiting for a chosen reminder date, and deciding later whether the item is still wanted. A useful pause, realistic personal rules and practical alternatives support that loop. The first release should work without a bank connection or mandatory account. Keep the core experience simple enough for one developer to build, support and improve.
 
-The prototype contains 82 navigable screens. It combines a no-buy or low-buy challenge with an impulse pause, a waiting room, an owned-item collection and meaningful goals. Community-informed tools add essential replacement decisions, personal activities, use-up tracking, food-delivery alternatives and contextual spending records. The implementation is an interactive browser-local prototype; the native app and external services are a subsequent phase.
+The prototype contains 90 navigable screens. It combines a no-buy or low-buy challenge with an impulse pause, a waiting room, an owned-item collection and meaningful goals. Community-informed tools add essential replacement decisions, personal activities, use-up tracking, food-delivery alternatives and contextual spending records. The implementation is an interactive browser-local prototype; the native app and external services are a subsequent phase.
 
 ## Audience and problem
 
@@ -172,6 +172,40 @@ Include currency and time-price preferences, reminder choices, help, local data 
 
 Acceptance: export includes local records; reset requires a second deliberate action. No notification delivery, live sync service or installed offline cache is connected. Browser storage can be cleared by the browser, so it is not a production backup solution.
 
+## Shopping detox experience
+
+Version 1.5 makes the product waiting loop the primary visual experience. Today presents an animated sprout, parked temptations, products ready to review and a direct product capture action. The waiting room uses object cards with a visible cooldown and the optional price in work hours. The original product URL, three-day or one-week deadline and buy, skip or wait-longer decisions remain central.
+
+### Companion growth
+
+A code-native sprout illustration breathes, blinks and waves. Growth has three stages at zero, four and twelve thoughtful moments. A moment is an explicitly recorded product decision, a daily check-in or a recorded pause. Capturing more wants earns no growth. An essential or unplanned purchase does not subtract progress. Native implementation should deduplicate event IDs, preserve history across versions and expose the same reduced-motion behavior.
+
+Acceptance: only one product decision is recorded per item ID; a daily check-in can be updated without earning duplicate credit. All animation stops with the app motion control or system reduced-motion setting, while the pause timer and stored records keep working.
+
+### Temptation counter and anti haul
+
+Parked value is the sum of undecided saved-product prices. It is not avoided spending. Recorded skipped value sums explicit skips with item history, filtered to the current local calendar month or all recorded history. The earlier prototype aggregate remains visible separately; it includes demo data and has no complete item-level history. New monthly anti-hauls and share cards exclude that earlier total. Set-aside balances continue to require a separate user confirmation.
+
+Acceptance: deleting, waiting longer, editing a product link or opening a shop changes no skipped value. Explicit skipping counts once, preserves money set aside and stores the item's name, category, price, date and stable ID. Production monetary aggregation must retain original currency and use minor units; changing prototype currency relabels values without conversion.
+
+### Product sharing
+
+The prototype includes a native share-sheet design and a working browser paste action. Clipboard denial falls back to the existing product-link field. An incoming URL query can prefill a safe http or https product link and optional title, with manual confirmation of price and reminder. Importing does not save the product or create an assumed retailer price.
+
+Acceptance: reject unsafe URL schemes, credential-bearing URLs and invalid links. Escape titles. Shipping iOS requires a Share Extension and shared app storage; Android requires an incoming share intent. Actual native integration, metadata extraction and background notifications are not connected in this browser prototype.
+
+### No Buy Battles
+
+A local room supports seven-day and thirty-day durations, one focus category, personal rules and essential exceptions. A participant records one check-in per local calendar day. Following a plan, a necessary exception and an honest setback all count toward completion. Score is check-in days divided by challenge duration, rather than money avoided or purchases made. The opponent and its score are explicitly illustrative. A live recap does not pretend an unfinished challenge is complete.
+
+Acceptance: edits replace today's check-in; entries after the challenge period are rejected. Creating another room replaces the current local room without erasing product decisions or companion progress. Copying an invitation draft sends nothing and creates no working join link. Production requires authentication, consented membership, timezone rules, authorized reads and writes, revocation and sync. Prices, product URLs, notes and financial balances remain private.
+
+### Share cards
+
+Forest and clay card styles download as self-contained SVG. Amounts are hidden by default. Only recorded monthly skips appear in the count and optional amount. The card labels estimated purchase cost clearly and excludes actual savings, product names, links and personal notes. Captions use the same privacy settings and fall back to a text download when clipboard access is unavailable.
+
+Acceptance: the card and caption use the same selected period and records. Earlier aggregate totals never leak into a share card. Zero records produce a truthful zero state, not an invented streak. The design uses the working tagline Want it Wait on it; final brand wording can change independently of financial definitions.
+
 ## Money model
 
 Use these definitions consistently throughout design, implementation and marketing.
@@ -217,7 +251,7 @@ Keep derived totals separate from source records. Use stable IDs rather than mat
 
 | Area | Current delivery | Production work remaining |
 | --- | --- | --- |
-| Design and brand | 82 screens, original assets, responsive review site and motion | Native adaptation, device visual and accessibility QA |
+| Design and brand | 90 screens, original assets, responsive review site and motion | Native adaptation, device visual and accessibility QA |
 | Core and community tools | Browser-local forms, records, timer, cooldowns, export and card download | Durable database, arbitrary-date history and correction workflows |
 | Progress | Record-derived check-in counts; seeded charts labeled | Fully derived analytics with accurate periods and denominators |
 | Reminders | Preferences and permission-primer design | Native permission handling and scheduled delivery |

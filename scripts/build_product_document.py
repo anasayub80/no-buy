@@ -98,7 +98,7 @@ def build():
         i += 1
     footer = section.footer.paragraphs[0]
     footer.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    footer.add_run('Lessly product requirements 1.4  |  ')
+    footer.add_run('Lessly product requirements 1.5  |  ')
     fld = OxmlElement('w:fldSimple'); fld.set(qn('w:instr'), 'PAGE'); footer._p.append(fld)
     for run in footer.runs: run.font.size = Pt(8); run.font.color.rgb = RGBColor(0, 0, 0)
     # Remove inherited Word title paragraph borders, including the built-in blue rule.

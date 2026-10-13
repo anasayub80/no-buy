@@ -3,7 +3,8 @@ const app=fs.readFileSync('dist/app.js','utf8'),extra=fs.readFileSync('dist/comm
 const context={};vm.createContext(context);
 const start=app.indexOf('const groups='),end=app.indexOf('const screens=',start);
 const extraStart=extra.indexOf('const communityGroups='),extraEnd=extra.indexOf('function migrateCommunity',extraStart);
-vm.runInContext(extra.slice(extraStart,extraEnd)+app.slice(start,end),context);
+const viral=fs.readFileSync('dist/viral.js','utf8');
+vm.runInContext(extra.slice(extraStart,extraEnd)+viral.slice(viral.indexOf('const viralGroups='),viral.indexOf('let counterPeriod='))+app.slice(start,end),context);
 const groups=vm.runInContext('groups',context);let n=0;
 let table='| # | Journey | Screen | Purpose |\n| --- | --- | --- | --- |\n';
 for(const [journey,items]of groups)for(const [id,title,purpose]of items)table+=`| ${String(++n).padStart(2,'0')} | ${journey} | [${title}](https://lessly-design.m-anasayub80.chatgpt.site/#${id}) | ${purpose} |\n`;

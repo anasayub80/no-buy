@@ -45,3 +45,7 @@ Use case: stylized-concept. Asset type: original premium Lessly buy-less mobile 
 ## Export and motion
 
 Originals are preserved without resizing. WebP copies are optimized for the app and keep transparency. The UI uses object-fit containment and slow decorative floating; reduced motion disables the animation. Do not bake financial values, UI labels or localization text into the raster illustrations.
+
+## Animated sprout companion
+
+Visual edition 04 adds an original code-native SVG illustration in `dist/viral.js`, with CSS breathing, blinking, waving and celebration in `dist/viral.css`. Three growth stages add leaves and a flower; no external image or font dependency is required. Reduced motion disables decorative animation. The seven original transparent bitmap scenes remain included.
