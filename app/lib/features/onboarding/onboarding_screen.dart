@@ -10,6 +10,7 @@ import 'screens/intention_screen.dart';
 import 'screens/preferences_screen.dart';
 import 'screens/ready_screen.dart';
 import 'screens/reminders_screen.dart';
+import '../navigation/main_navigation_scaffold.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -102,6 +103,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
+  void _navigateToTodayDashboard() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const MainNavigationScaffold()),
+      (route) => false,
+    );
+  }
+
   void _navigateToReadyScreen() {
     Navigator.push(
       context,
@@ -109,66 +118,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         builder: (context) => ReadyScreen(
           preferences: _preferences,
           onBack: () => Navigator.pop(context),
-          onTrySevenDayStart: () => _showCompletionDialog('A gentle seven-day starter challenge has begun!'),
-          onCreateChallenge: () => _showCompletionDialog('Custom challenge creation unlocked!'),
-          onLookAround: () => _showCompletionDialog('Welcome to your Lessly dashboard!'),
+          onTrySevenDayStart: _navigateToTodayDashboard,
+          onCreateChallenge: _navigateToTodayDashboard,
+          onLookAround: _navigateToTodayDashboard,
         ),
       ),
     );
   }
 
-  void _showCompletionDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: AppColors.cream,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        title: Row(
-          children: [
-            const Icon(
-              Icons.check_circle_rounded,
-              color: AppColors.forest,
-              size: 26,
-            ),
-            const SizedBox(width: 10),
-            Flexible(
-              child: Text(
-                'Starting Journey Complete',
-                style: AppTypography.heroTitleSans.copyWith(fontSize: 18),
-              ),
-            ),
-          ],
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              message,
-              style: AppTypography.subtitle.copyWith(color: AppColors.forest, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Selected Intention: ${_preferences.intention}\nCurrency: ${_preferences.currency} · Hourly Rate: ${_preferences.hourlyRate.isNotEmpty ? "${_preferences.currency}${_preferences.hourlyRate}" : "None"}',
-              style: AppTypography.inputHint,
-            ),
-          ],
-        ),
-        actions: [
-          PrimaryButton(
-            label: 'Back to start',
-            showArrow: false,
-            onPressed: () {
-              Navigator.of(context).popUntil((route) => route.isFirst);
-              _goToPage(0);
-            },
-          ),
-        ],
-      ),
-    );
-  }
 
   void _showExploreBottomSheet() {
     showModalBottomSheet(
@@ -308,7 +265,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
               ),
 
-              // Screen 08: You\'re ready
+              // Screen 08: You're ready
               _buildExploreScreenTile(
                 number: '08',
                 title: 'You’re ready',
@@ -316,6 +273,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 onTap: () {
                   Navigator.pop(context);
                   _navigateToReadyScreen();
+                },
+              ),
+
+              // Screen 09: Today (Shopping Detox Dashboard)
+              _buildExploreScreenTile(
+                number: '09',
+                title: 'Today (Home Dashboard)',
+                subtitle: 'Your shopping detox, pause pal & savings.',
+                onTap: () {
+                  Navigator.pop(context);
+                  _navigateToTodayDashboard();
                 },
               ),
 
