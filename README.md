@@ -1,17 +1,21 @@
 # Lessly no-buy app
 
-**Working name. Visual edition 04.** Complete community-informed mobile UI/UX with 90 navigable screens, original illustrations, motion and browser-local interactions.
+**Working name. Visual edition 04.** Complete community-informed mobile UI/UX with 91 navigable screens, original illustrations, motion and browser-local interactions.
 
 [Open the private review prototype](https://lessly-design.m-anasayub80.chatgpt.site)
 
 ## Read first
 
 - [Complete app idea and product requirements](docs/App-product-requirements.md)
-- [Product document in Word](docs/App-product-requirements.docx)
+- [Product document in Word (v1.5 baseline)](docs/App-product-requirements.docx)
 - [UI/UX specification and all screen routes](docs/UIUX-specification.md)
 - [25-post community research and coverage limits](docs/community-research.md)
 - [Original asset manifest and prompts](docs/asset-manifest.md)
 - [Visual direction, layouts and motion guide](docs/Visual-design-guide.md)
+
+## Savings and achievements
+
+Version 1.6 presents skipped purchases as **Savings**, with an estimated-spending label and separate money-set-aside balances. Seven badges celebrate recorded skips, estimated-savings milestones and honest check-ins. Skipping a product reveals newly earned badges. Earlier demo totals do not unlock achievements. [Explore achievements](https://lessly-design.m-anasayub80.chatgpt.site/#achievements). The Markdown requirements below are current; the Word document remains the v1.5 product baseline.
 
 ## Shopping detox edition
 
@@ -23,7 +27,7 @@ Browser link paste, share-query prefilling, local battle check-ins and SVG downl
 
 ## Visual redesign
 
-Pet Care’s clearer review layout is adapted to Lessly: persistent screen navigation, journey chips, searchable full-phone previews, and direct access to all 90 screens. The mobile system uses bold, readable headings, restrained italic accents and bottom-aligned onboarding actions. Seven original illustrations cover pauses, recovery, owned belongings, goals, food alternatives and daily enjoyment. Gentle art motion, breathing cues, short completion effects and an explicit persistent motion setting respect the system reduced-motion preference.
+Pet Care’s clearer review layout is adapted to Lessly: persistent screen navigation, journey chips, searchable full-phone previews, and direct access to all 91 screens. The mobile system uses bold, readable headings, restrained italic accents and bottom-aligned onboarding actions. Seven original illustrations cover pauses, recovery, owned belongings, goals, food alternatives and daily enjoyment. Gentle art motion, breathing cues, short completion effects and an explicit persistent motion setting respect the system reduced-motion preference.
 
 [Open the complete screen gallery](https://lessly-design.m-anasayub80.chatgpt.site/?view=screens)
 

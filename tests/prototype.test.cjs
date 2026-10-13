@@ -8,12 +8,12 @@ vm.createContext(sandbox);vm.runInContext(fs.readFileSync('dist/community.js','u
 const run=code=>vm.runInContext(code,sandbox);
 const submit=(id,data)=>{sandbox.testForm={dataset:{form:id},data,elements:new Proxy({},{get:()=>({focus(){}})}),querySelector:()=>element('error')};run('handleForm(testForm)')};
 const all=run('screens.map(s=>({id:s.id,html:renderScreen(s.id)}))');
-assert.equal(all.length,90);
+assert.equal(all.length,91);
 const ids=new Set(all.map(x=>x.id)),actions=new Set(),forms=new Set();
 for(const {id,html} of all){assert.ok(html.length>300,`${id}: complete screen markup`);assert.ok(!/undefined|\$\{/.test(html),`${id}: no unresolved values`);for(const m of html.matchAll(/data-go="([^"]+)"/g))assert.ok(ids.has(m[1]),`${id}: valid route ${m[1]}`);for(const m of html.matchAll(/data-action="([^"]+)"/g))actions.add(m[1]);for(const m of html.matchAll(/data-form="([^"]+)"/g))forms.add(m[1]);}
 const source=fs.readFileSync('dist/app.js','utf8')+fs.readFileSync('dist/community.js','utf8')+fs.readFileSync('dist/viral.js','utf8');for(const a of actions)assert.ok(source.includes(`case '${a}':`),`action ${a} implemented`);for(const f of forms)assert.ok(source.includes(`case '${f}':`),`form ${f} implemented`);
 for(const id of ids){run(`screen=${JSON.stringify(id)};render()`);assert.ok(element('studio').innerHTML.includes('phone'),`studio renders ${id}`)}
-run("view='library';render()");assert.equal((element('studio').innerHTML.match(/class="library-card"/g)||[]).length,90);run("view='brand';render()");assert.ok(element('studio').innerHTML.includes('Original art direction'));
+run("view='library';render()");assert.equal((element('studio').innerHTML.match(/class="library-card"/g)||[]).length,91);run("view='brand';render()");assert.ok(element('studio').innerHTML.includes('Original art direction'));
 submit('add-item',{name:'',price:'20',category:'Clothing',cooldown:'48 hours',note:''});assert.ok(element('error').textContent.includes('required'));assert.equal(run('state.wants.length'),3);
 submit('add-item',{name:'<img src=x onerror=alert(1)>',price:'21.50',category:'Clothing',cooldown:'48 hours',note:'Need?'});assert.equal(run('state.wants.length'),4);assert.equal(run('want().price'),21.5);assert.ok(run("renderScreen('item-detail')").includes('&lt;img'));assert.ok(!run("renderScreen('item-detail')").includes('<img src=x'));
 const beforeSaved=run('state.setAside'),beforeSkipped=run('state.skipped');run("handleAction('skip-want')");assert.equal(run('state.skipped'),beforeSkipped+21.5);assert.equal(run('state.setAside'),beforeSaved);assert.equal(run('state.wants.length'),3);
@@ -54,7 +54,7 @@ assert.equal((element('studio').innerHTML.match(/class="library-card"/g)||[]).le
 run("search='food delivery'");assert.equal(run('galleryScreens().length'),1);
 assert.equal(run('galleryScreens()[0].id'),'food-rescue');
 run("search='a screen that does not exist'");assert.ok(run('renderGalleryCards()').includes('Show all screens'));
-run("handleAction('clear-gallery')");assert.equal(run('galleryScreens().length'),90);
+run("handleAction('clear-gallery')");assert.equal(run('galleryScreens().length'),91);
 run("handleAction('gallery-group','<unknown>')");assert.equal(run('galleryGroup'),'All');
 for(const id of ['welcome','intro-pause','intro-clarity','intro-grow']){
  const html=run(`renderScreen('${id}')`);assert.ok(html.includes('onboard-actions'));
@@ -142,7 +142,7 @@ run('shareAmounts=false');let share=run('shareCardSvg()');
 assert.ok(!share.includes('$32'));assert.ok(!share.includes('PRIVATE PRODUCT'));
 assert.ok(!share.includes('$284'));assert.ok(!share.includes('https://shop'));
 run('shareAmounts=true');share=run('shareCardSvg()');assert.ok(share.includes('$32'));
-assert.ok(share.includes('Not verified savings'));assert.ok(!share.includes('$316'));
+assert.ok(share.includes('Not money set aside'));assert.ok(!share.includes('$316'));
 run("handleAction('share-style','clay')");assert.equal(run('state.shareStyle'),'clay');assert.ok(run('shareCardSvg()').includes('#f3ad91'));
 submit('battle',{name:'<script>Test room</script>',days:'7 days',category:'Clothing',rule:'Wait before buying.',exception:'Essential replacements.'});
 assert.equal(run('screen'),'battle-lobby');assert.equal(run('battleScore()'),0);
@@ -163,4 +163,23 @@ run("draft.newWantUrl='';location.search='?url=javascript%3Aalert(1)';importShar
 assert.equal(run('draft.newWantUrl'),'');
 for(const {id} of all){const html=run(`renderScreen('${id}')`);assert.ok(!html.includes('undefined'),id);}
 assert.ok(storage.get('lessly-demo-v1').includes('decisionEvents'));
+// Savings presentation and achievements never convert an avoided purchase into cash.
+run('state=migrateViral(migrateCommunity(structuredClone(defaults)));draft={};selectedWant=2');
+assert.equal(run('achievementDefinitions().filter(a=>a.value>=a.goal).length'),0);
+assert.ok(run("renderScreen('today')").includes('SAVINGS'));
+assert.ok(run("renderScreen('today')").includes('Estimated spending'));
+const setAsideBeforeBadge=run('state.setAside');
+run("handleAction('skip-want')");
+assert.equal(run('state.setAside'),setAsideBeforeBadge);
+assert.equal(run('achievementDefinitions().filter(a=>a.value>=a.goal).length'),1);
+assert.ok(run('draft.earnedAchievements.includes("First little win")'));
+assert.ok(run("renderScreen('skip-done')").includes('ACHIEVEMENT UNLOCKED'));
+run('selectedWant=1;handleAction("skip-want")');
+assert.ok(run('achievementDefinitions().find(a=>a.id==="savings-100").value>=100'));
+assert.ok(run('draft.earnedAchievements.includes("A little freedom")'));
+const earnedBeforeSpending=run('achievementDefinitions().filter(a=>a.value>=a.goal).length');
+submit('purchase',{name:'An essential replacement',amount:'25',category:'Home',kind:'Allowed exception',note:''});
+assert.equal(run('achievementDefinitions().filter(a=>a.value>=a.goal).length'),earnedBeforeSpending);
+assert.equal(run('state.setAside'),setAsideBeforeBadge);
+run('shareAmounts=true');assert.ok(run('shareCardSvg()').includes('estimated savings from skipped purchases'));
 console.log(`PASS: ${all.length} screens; core flows, independent money totals, recorded skips, growth without punishment, private share cards, imports, battle check-ins and expiry, gallery and reduced motion.`);

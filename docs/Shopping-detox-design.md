@@ -1,6 +1,6 @@
 # Lessly Shopping Detox Design
 
-Version 1.5. Visual edition 04. 13 October 2026. Working name Lessly.
+Version 1.6. Visual edition 04. 13 October 2026. Working name Lessly.
 
 Make saving a tempting product, waiting for a reminder and choosing later the central experience. The playful layer helps people understand and share that experience. It preserves the practical tools and essential exceptions from the original product.
 
@@ -21,7 +21,11 @@ Make saving a tempting product, waiting for a reminder and choosing later the ce
 | Monthly anti-haul | Item history for explicitly skipped products this calendar month |
 | Share card | Forest/clay SVG, optional amount, privacy-preserving caption and download |
 
-There are 90 routes across 15 journeys. The gallery retains complete phone previews, search and journey filters. The social screens are reachable from Today, Challenges and the previous buddy screen.
+There are 91 routes across 15 journeys. The gallery retains complete phone previews, search and journey filters. The social screens are reachable from Today, Challenges and the previous buddy screen.
+
+## Savings and achievements
+
+Savings is the consumer-facing label for estimated spending avoided through skips. The large Today card preserves the earlier aggregate and marks demo history; current monthly shares use recorded item values only. Seven achievements reward one, five or ten skipped wants; 100, 500 or 1000 units of recorded estimated savings; and seven honest check-in days. Earlier demo amounts earn no awards. Spending never removes badges. A skip surfaces freshly unlocked achievements and keeps confirmed set-aside money unchanged.
 
 ## Character and motion
 

@@ -1,8 +1,8 @@
 {
   "name": "lessly-no-buy-prototype",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
-  "description": "Community-informed 90-screen no-buy and low-buy mobile UI/UX prototype",
+  "description": "Community-informed 91-screen no-buy and low-buy mobile UI/UX prototype",
   "scripts": {
     "test": "node tests/prototype.test.cjs",
     "check": "node --check dist/app.js && node --check dist/community.js && node --check dist/viral.js"

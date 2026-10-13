@@ -1,6 +1,6 @@
 # Lessly Visual edition 04
 
-13 October 2026. The latest 90-screen, 15-journey design adds a playful shopping-detox layer while preserving the forest, cream, mint and clay identity. See [Shopping detox design](Shopping-detox-design.md) for current screens and interactions.
+13 October 2026. The latest 91-screen, 15-journey design adds a playful shopping-detox layer while preserving the forest, cream, mint and clay identity. See [Shopping detox design](Shopping-detox-design.md) for current screens and interactions.
 
 ## Previous visual edition 03
 

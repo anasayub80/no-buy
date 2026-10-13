@@ -1,12 +1,12 @@
 # Lessly App Idea and Product Requirements
 
-Version 1.5. Prepared for Anas Ayub on 13 October 2026. Lessly is a working name and can be changed before launch.
+Version 1.6. Prepared for Anas Ayub on 13 October 2026. Lessly is a working name and can be changed before launch.
 
 ## Product decision
 
 Build a mobile app whose core loop is saving a product link, waiting for a chosen reminder date, and deciding later whether the item is still wanted. A useful pause, realistic personal rules and practical alternatives support that loop. The first release should work without a bank connection or mandatory account. Keep the core experience simple enough for one developer to build, support and improve.
 
-The prototype contains 90 navigable screens. It combines a no-buy or low-buy challenge with an impulse pause, a waiting room, an owned-item collection and meaningful goals. Community-informed tools add essential replacement decisions, personal activities, use-up tracking, food-delivery alternatives and contextual spending records. The implementation is an interactive browser-local prototype; the native app and external services are a subsequent phase.
+The prototype contains 91 navigable screens. It combines a no-buy or low-buy challenge with an impulse pause, a waiting room, an owned-item collection and meaningful goals. Community-informed tools add essential replacement decisions, personal activities, use-up tracking, food-delivery alternatives and contextual spending records. The implementation is an interactive browser-local prototype; the native app and external services are a subsequent phase.
 
 ## Audience and problem
 
@@ -206,6 +206,14 @@ Forest and clay card styles download as self-contained SVG. Amounts are hidden b
 
 Acceptance: the card and caption use the same selected period and records. Earlier aggregate totals never leak into a share card. Zero records produce a truthful zero state, not an invented streak. The design uses the working tagline Want it Wait on it; final brand wording can change independently of financial definitions.
 
+### Savings presentation and achievements
+
+Display avoided purchase cost as Savings, qualified as estimated spending avoided through explicitly skipped purchases. Keep money actually set aside as a separate confirmed balance. The all-time headline preserves the previous skipped-cost aggregate and labels earlier demo history when present. Monthly cards and share images use item-level recorded skips only.
+
+Seven achievements cover a first skip, five skips, ten skips, 100, 500 and 1000 currency units of estimated savings, and seven honest check-in days. Money milestones use recorded all-time item values; imported demo totals cannot unlock them. A skip reveals any newly unlocked milestone. Purchases never remove awards; check-ins need not be consecutive. The underlying monetary model is unchanged, and no money is moved by a skip.
+
+The Markdown specification is the current v1.6 handoff. The Word document remains the v1.5 product baseline; this section documents the newer presentation and achievement behavior.
+
 ## Money model
 
 Use these definitions consistently throughout design, implementation and marketing.
@@ -251,7 +259,7 @@ Keep derived totals separate from source records. Use stable IDs rather than mat
 
 | Area | Current delivery | Production work remaining |
 | --- | --- | --- |
-| Design and brand | 90 screens, original assets, responsive review site and motion | Native adaptation, device visual and accessibility QA |
+| Design and brand | 91 screens, original assets, responsive review site and motion | Native adaptation, device visual and accessibility QA |
 | Core and community tools | Browser-local forms, records, timer, cooldowns, export and card download | Durable database, arbitrary-date history and correction workflows |
 | Progress | Record-derived check-in counts; seeded charts labeled | Fully derived analytics with accurate periods and denominators |
 | Reminders | Preferences and permission-primer design | Native permission handling and scheduled delivery |
